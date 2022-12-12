@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-header">
+        <h3 class="card-title h1" id="title">Todo App 2</h3>
+        <ul id="task-list">
+            <li>Görev 1</li>
+            <li>Görev 2</li>
+            <li>Görev 3</li>
+        </ul>
+    </div>
+
+    <script>
+        let result;
+
+        result = document.getElementById("title");
+        result = document.getElementById("title").id;
+        result = document.getElementById("title").className;
+        result = document.getElementById("title").classList;
+        
+        document.getElementById("title").style.fontSize = "30px";
+        document.getElementById("title").style.color = "green";
+        // document.getElementById("title").style.display = "none";
+
+        document.getElementById("title").innerText = "Todo App (manipulated)";
+        document.getElementById("title").innerHTML = "Todo App (manipulated)<hr>";
+        
+        result = document.querySelector("#title");
+        result = document.querySelector(".card-header");
+        result = document.querySelector("h3");
+
+        result = document.querySelector("li");
+        result = document.querySelector("li:nth-child(2)");
+        
+        result = document.querySelectorAll("li");
+
+
+        console.log(result)
+    </script>
+</body>
+</html>
