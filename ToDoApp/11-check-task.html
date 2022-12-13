@@ -20,18 +20,6 @@
         .task label.checked {
             text-decoration: line-through;
         }
-
-        .filters span.active{
-            color: #3C8FF2;
-        }
-
-        .filters span {
-            margin-right: 5px;
-            font-size: 14px;
-            column-rule-color: gray;
-            cursor: pointer;
-        }
-        
     </style>
 </head>
 
@@ -55,12 +43,7 @@
                     </div>
                 </div>
                 <div class="card mt-3">
-                    <div class="d-flex card-header controls justify-content-between">
-                        <div class="filters">
-                            <span class="active" id="all">All</span>
-                            <span id="ongoing">Ongoing</span>
-                            <span id="completed">Completed</span>
-                        </div>
+                    <div class="d-flex card-header justify-content-end">
                         <button id="btnClear" class="btn btn-danger btn-sm">Temizle</button>
                     </div>
                     <ul id="task-list" class="list-group list-group-flush">
@@ -88,9 +71,8 @@
 
         const btnClear = document.getElementById("btnClear");
         const taskInput = document.querySelector("#txtTaskName");
-        const filters = document.querySelectorAll(".filters span")
 
-        function displayTasks(filter) {
+        function displayTasks() {
             let ul = document.getElementById("task-list");
             ul.innerHTML = "";
 
@@ -103,9 +85,7 @@
 
             for (let task of taskObj) {
                 let isCompleted = task.status == "completed" ? "checked" : ""
-                
-                if(filter == task.status || filter == "all") {
-                    let li = `
+                let li = `
                     <li class="d-flex task list-group-item justify-content-between align-items-center">
                         <div class="form-check">
                             <input type="checkbox" onclick="updateStatus(this)" id="${task.id}" class="form-check-input" ${isCompleted}>
@@ -125,23 +105,13 @@
                     </li>
                     
                 `;
-                    ul.insertAdjacentHTML("beforeend", li)
-                }
 
-                
+                ul.insertAdjacentHTML("beforeend", li)
             }
 
         }
 
-        displayTasks("all");
-
-        for (let span of filters) {
-            span.addEventListener("click", () => {
-                document.querySelector("span.active").classList.remove("active");
-                span.classList.add("active");
-                displayTasks(span.id)
-            })
-        }
+        displayTasks();
 
         let newTask = (event) => {
 
@@ -164,7 +134,7 @@
                     }
                 }
                 taskInput.value = "";
-                displayTasks(document.querySelector("span.active").id);
+                displayTasks()
             }
 
             event.preventDefault();
@@ -201,7 +171,7 @@
 
 
             taskObj.splice(deletedId, 1);
-            displayTasks(document.querySelector("span.active").id);
+            displayTasks();
 
         }
 
@@ -232,7 +202,7 @@
                 status = "completed";
             } else {
                 label.classList.remove("checked");
-                status = "pending";
+                status = "ongoing";
             }
 
             for (let task of taskObj) {

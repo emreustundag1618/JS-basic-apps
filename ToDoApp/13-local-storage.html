@@ -165,6 +165,8 @@
                 taskInput.value = "";
                 displayTasks(document.querySelector("span.active").id);
                 localStorage.setItem("taskObj", JSON.stringify(taskObj));
+                // session storage key value değerleri browser veya sekme kapatıldığında sıfırlanır. yani sessionstorage.clear() olarak çalışır
+                // sessionStorage.setItem("taskObj", JSON.stringify(taskObj));
             }
 
             event.preventDefault();
@@ -249,6 +251,8 @@
         }
 
         console.log(localStorage.getItem("taskObj"))
+
+        
 
         
 

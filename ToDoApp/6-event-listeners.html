@@ -81,8 +81,8 @@
             ul.insertAdjacentHTML("beforeend", li)
         }
 
-        let btnEkle = document.querySelector("#btnAddNewTask");
-        btnEkle.addEventListener("click", (event) => {
+        let button = document.querySelector("#btnAddNewTask");
+        button.addEventListener("click", (event) => {
             console.log("Event: Ekle butonu clicked");
             // sayfa yenilemeyi durdurur. normalde click eventi çalıştığında default olarak sayfayı yeniliyor
             event.preventDefault();
